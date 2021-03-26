@@ -1,0 +1,31 @@
+@import "../../../../../variables.scss";
+
+.chat-message {
+  padding: 1.5em;
+  .img-wrapper {
+    margin-right: 1em;
+    height: 50px;
+    width: 50px;
+  }
+  .name {
+    margin-right: 1em;
+    font-weight: 600;
+    font-size: 1em;
+  }
+  .timestamp {
+    font-weight: 200;
+    font-size: 0.8em;
+    color: darken($light-grey, 30%);
+  }
+  .message {
+    font-size: 1.2em;
+    color: darken($grey, 25%);
+    font-weight: 200;
+    margin-top: 0.2em;
+  }
+  .rounded-circle {
+    margin-right: 1em;
+    height: 50px !important;
+    width: 50px !important;
+  }
+}
