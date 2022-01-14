@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChatroomTitleBarComponent implements OnInit {
 
-  @Input() title!: String;
+  @Input() title: any;
   constructor() { }
 
   ngOnInit(): void {

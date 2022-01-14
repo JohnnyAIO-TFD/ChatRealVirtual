@@ -10,21 +10,22 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 import { IsOwnerGuard } from './guards/is-owner.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/login'},
-  { path: 'login', component: LoginComponent},
-  { path: 'signup', component: SignupComponent},
-  { path: 'chat', canActivate: [AuthGuard], children: [
-    {path: '', component: ChatComponent},
-    {path: ':chatroomId', component: ChatComponent}
-  ]
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  {
+    path: 'chat', canActivate: [AuthGuard], children: [
+      { path: '', component: ChatComponent },
+      { path: ':chatroomId', component: ChatComponent }
+    ]
   },
-  {path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard, IsOwnerGuard]},
-  { path: '**', redirectTo: '/login'}
+  { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard, IsOwnerGuard] },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

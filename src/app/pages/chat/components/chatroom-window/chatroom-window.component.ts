@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewChecked, ElementRef, ViewChild  } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ChatroomService } from '../../../../services/chatroom.service';
@@ -15,24 +15,24 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy {
   private scrollContainer!: ElementRef;
 
   private subscriptions: Subscription[] = [];
-  public chatroom!: Observable<any>;
-  public messages!: Observable<any>;
-//TODO replace with Firebase Data
+  public chatroom!: (Observable<any> & any);
+  public messages!: (Observable<any> & any);
+  //TODO replace with Firebase Data
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     private chatroomService: ChatroomService,
-    private loadingService: LoadingService) { 
-      this.subscriptions.push(
-        this.chatroomService.selectedChatroom.subscribe(chatroom => {
-          this.chatroom = chatroom;
-        })
-      );
-      this.subscriptions.push(
-        this.chatroomService.selectedChatroomMessages.subscribe(messages => {
-          this.messages = messages;
-        })
-      );
-    }//end-constructor
+    private loadingService: LoadingService) {
+    this.subscriptions.push(
+      this.chatroomService.selectedChatroom.subscribe(chatroom => {
+        this.chatroom = chatroom;
+      })
+    );
+    this.subscriptions.push(
+      this.chatroomService.selectedChatroomMessages.subscribe(messages => {
+        this.messages = messages;
+      })
+    );
+  }//end-constructor
 
   ngOnInit(): void {
     this.scrollBottom();
@@ -41,22 +41,22 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy {
         const chatroomId = params.get('chatroomId');
         this.chatroomService.changeChatroom.next(chatroomId);
       })
-      
+
     );
   }//end-OnInit
 
-  ngAfterViewChecked(){
+  ngAfterViewChecked() {
     this.scrollBottom();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }//end-Destroy
 
-  private scrollBottom(): void{
-    try{
+  private scrollBottom(): void {
+    try {
       this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    } catch(err) {
+    } catch (err) {
 
     }//end-catch
   }//end-scroll

@@ -8,6 +8,5 @@ export class Alert {
         constructor(text : string, type : AlertType){
         this.text = text;
         this.type = type;
-
     }
 }
