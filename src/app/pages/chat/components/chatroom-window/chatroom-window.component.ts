@@ -20,8 +20,7 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy {
   //TODO replace with Firebase Data
 
   constructor(private route: ActivatedRoute,
-    private chatroomService: ChatroomService,
-    private loadingService: LoadingService) {
+    private chatroomService: ChatroomService) {
     this.subscriptions.push(
       this.chatroomService.selectedChatroom.subscribe(chatroom => {
         this.chatroom = chatroom;
